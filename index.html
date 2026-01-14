@@ -1,0 +1,323 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Expressionismo - Resumo Interativo</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@700&family=Lato:wght@300;400;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Lato', sans-serif;
+            background-color: #1a1a1a;
+            color: #e5e5e5;
+        }
+        h1, h2, h3 {
+            font-family: 'Cinzel', serif;
+        }
+        .card {
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.5);
+        }
+        .text-shadow {
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.7);
+        }
+        .loader {
+            border: 3px solid #f3f3f3;
+            border-radius: 50%;
+            border-top: 3px solid #ea580c;
+            width: 20px;
+            height: 20px;
+            -webkit-animation: spin 1s linear infinite; /* Safari */
+            animation: spin 1s linear infinite;
+        }
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+    </style>
+</head>
+<body class="min-h-screen flex flex-col">
+
+    <!-- Header -->
+    <header class="bg-gradient-to-r from-orange-900 to-red-900 py-12 px-4 shadow-lg border-b-4 border-yellow-600">
+        <div class="max-w-4xl mx-auto text-center">
+            <h1 class="text-5xl md:text-6xl font-bold text-white mb-4 tracking-wider text-shadow">EXPRESSIONISMO</h1>
+            <p class="text-xl text-yellow-100 font-light italic">"A arte não reproduz o visível, torna visível."</p>
+        </div>
+    </header>
+
+    <main class="flex-grow container mx-auto px-4 py-8 max-w-4xl">
+
+        <!-- AI Interactive Section (Pintor de Emoções Only) -->
+        <section class="mb-12">
+            <div class="bg-neutral-800 rounded-lg border border-orange-500/30 overflow-hidden shadow-2xl">
+                <div class="bg-gradient-to-r from-gray-900 to-gray-800 p-4 border-b border-orange-500/30 flex justify-between items-center">
+                    <h2 class="text-2xl text-orange-500 flex items-center gap-2">
+                        <span>✨</span> Pintor de Emoções
+                    </h2>
+                    <span class="text-xs bg-orange-900 text-orange-200 px-2 py-1 rounded border border-orange-700">Powered by Gemini</span>
+                </div>
+                
+                <div class="p-8">
+                    <p class="text-gray-300 mb-6 text-center text-lg">
+                        O Expressionismo é sobre sentir. Digite uma emoção e a IA descreverá uma obra de arte imaginária baseada nesse sentimento.
+                    </p>
+                    
+                    <div class="max-w-xl mx-auto mb-6">
+                        <label class="block text-xs text-gray-500 uppercase tracking-wide mb-2 text-center">Como se sente hoje?</label>
+                        <div class="flex gap-2">
+                            <input type="text" id="emotion-input" placeholder="Ex: Angústia, Esperança, Medo, Euforia" 
+                                class="flex-grow bg-neutral-700 border border-neutral-600 rounded px-4 py-3 text-white placeholder-gray-400 focus:outline-none focus:border-blue-500 text-lg">
+                            <button onclick="generateArtDescription()" id="paint-btn" class="bg-blue-700 hover:bg-blue-600 text-white px-6 py-3 rounded transition-colors whitespace-nowrap font-bold shadow-lg">
+                                ✨ Criar Obra
+                            </button>
+                        </div>
+                    </div>
+
+                    <div id="art-result" class="bg-neutral-900 rounded-lg p-6 border border-neutral-700 min-h-[120px] flex items-center justify-center">
+                        <div class="text-sm text-gray-500 italic text-center">
+                            A descrição da sua "obra" aparecerá aqui.
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section 1: Origem -->
+        <section class="mb-12">
+            <div class="card bg-neutral-800 p-8 rounded-lg border-l-8 border-orange-600 shadow-md">
+                <div class="flex items-start">
+                    <div class="flex-shrink-0 mr-4 mt-1">
+                        <span class="flex items-center justify-center h-10 w-10 rounded-full bg-orange-900 text-orange-200 font-bold">1</span>
+                    </div>
+                    <div>
+                        <h2 class="text-3xl text-orange-500 mb-4 border-b border-neutral-700 pb-2">Onde e quando surgiu?</h2>
+                        <p class="text-lg leading-relaxed text-gray-300">
+                            O Expressionismo surgiu na <strong class="text-white">Alemanha</strong>, no início do século XX, por volta do ano de <strong class="text-white">1905</strong>.
+                        </p>
+                        <p class="mt-4 text-gray-400 text-sm italic border-l-2 border-gray-600 pl-4">
+                            Contexto Histórico: Apareceu numa época de muitas mudanças na sociedade e ficou marcado pela Primeira Guerra Mundial.
+                        </p>
+                        <p class="mt-4 text-lg">
+                            Este movimento artístico procurava mostrar os <span class="text-yellow-500 font-semibold">sentimentos e emoções</span> das pessoas, em vez de representar a realidade tal como ela é.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section 2: Vertentes -->
+        <section class="mb-12">
+            <h2 class="text-3xl text-center text-white mb-8">As Duas Vertentes Principais</h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                
+                <!-- Die Brücke -->
+                <div class="card bg-neutral-800 p-6 rounded-lg border-t-4 border-red-600 relative overflow-hidden group">
+                    <div class="absolute top-0 right-0 -mt-4 -mr-4 w-24 h-24 bg-red-600 rounded-full opacity-10 group-hover:scale-150 transition-transform duration-500"></div>
+                    <h3 class="text-2xl text-red-400 mb-2">Die Brücke</h3>
+                    <p class="text-sm text-gray-500 uppercase tracking-widest mb-4">(A Ponte)</p>
+                    <ul class="space-y-2 text-gray-300">
+                        <li class="flex items-center">
+                            <span class="w-2 h-2 bg-red-500 rounded-full mr-2"></span>
+                            Surgiu em 1905, Dresden.
+                        </li>
+                        <li class="flex items-start">
+                            <span class="w-2 h-2 bg-red-500 rounded-full mr-2 mt-2"></span>
+                            <span>Uso de <strong class="text-white">cores fortes</strong> e formas distorcidas para mostrar emoções intensas.</span>
+                        </li>
+                    </ul>
+                </div>
+
+                <!-- Der Blaue Reiter -->
+                <div class="card bg-neutral-800 p-6 rounded-lg border-t-4 border-blue-500 relative overflow-hidden group">
+                    <div class="absolute top-0 right-0 -mt-4 -mr-4 w-24 h-24 bg-blue-600 rounded-full opacity-10 group-hover:scale-150 transition-transform duration-500"></div>
+                    <h3 class="text-2xl text-blue-400 mb-2">Der Blaue Reiter</h3>
+                    <p class="text-sm text-gray-500 uppercase tracking-widest mb-4">(O Cavaleiro Azul)</p>
+                    <ul class="space-y-2 text-gray-300">
+                        <li class="flex items-center">
+                            <span class="w-2 h-2 bg-blue-500 rounded-full mr-2"></span>
+                            Surgiu em 1911, Munique.
+                        </li>
+                        <li class="flex items-start">
+                            <span class="w-2 h-2 bg-blue-500 rounded-full mr-2 mt-2"></span>
+                            <span>Importância aos <strong class="text-white">sentimentos interiores</strong>, espiritualidade e liberdade formal.</span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section 3: Artista -->
+        <section class="mb-12">
+            <div class="card bg-neutral-800 rounded-lg overflow-hidden shadow-xl border border-neutral-700">
+                <div class="bg-neutral-900 p-4 border-b border-neutral-700 flex justify-between items-center">
+                    <h2 class="text-2xl text-white">3. Artista de Destaque</h2>
+                    <span class="bg-yellow-700 text-yellow-100 text-xs px-3 py-1 rounded-full uppercase font-bold tracking-wide">Pioneiro</span>
+                </div>
+                
+                <div class="p-8 md:flex md:gap-8">
+                    <!-- Bio Column -->
+                    <div class="md:w-1/2 mb-6 md:mb-0">
+                        <h3 class="text-4xl text-yellow-500 mb-2">Edvard Munch</h3>
+                        <p class="text-gray-500 mb-6 text-sm">1863 (Noruega) — 1944</p>
+                        
+                        <p class="text-gray-300 leading-relaxed mb-4">
+                            Foi um pintor que colocou nas suas obras sentimentos profundos como o <span class="text-white border-b border-red-900">medo</span>, a <span class="text-white border-b border-blue-900">tristeza</span>, a <span class="text-white border-b border-purple-900">solidão</span> e a <span class="text-white border-b border-gray-600">angústia</span>.
+                        </p>
+                        <p class="text-gray-300">
+                            É considerado um dos artistas mais importantes ligados ao Expressionismo.
+                        </p>
+                    </div>
+
+                    <!-- Works & Style Column -->
+                    <div class="md:w-1/2 bg-neutral-700 bg-opacity-30 p-6 rounded-lg">
+                        <h4 class="text-xl text-white mb-4 border-l-4 border-yellow-500 pl-3">Principais Obras</h4>
+                        
+                        <!-- Gallery Grid -->
+                        <div class="grid grid-cols-2 gap-3 mb-6">
+                            <div class="group relative overflow-hidden rounded-lg">
+                                <img src="./O grito.webp" 
+                                     alt="O Grito" 
+                                     class="w-full h-32 object-cover transition-transform duration-300 group-hover:scale-110"
+                                     onerror="this.src='https://placehold.co/400x300?text=O+Grito'">
+                                <div class="absolute inset-0 bg-black bg-opacity-0 group-hover:bg-opacity-70 transition-all duration-300 flex items-center justify-center">
+                                    <span class="text-white text-xs font-bold opacity-0 group-hover:opacity-100 transform translate-y-2 group-hover:translate-y-0 transition-all duration-300">O Grito</span>
+                                </div>
+                            </div>
+
+                            <div class="group relative overflow-hidden rounded-lg">
+                                <img src="./Dança da vida.jpeg" 
+                                     alt="A Dança da Vida" 
+                                     class="w-full h-32 object-cover transition-transform duration-300 group-hover:scale-110"
+                                     onerror="this.src='https://placehold.co/400x300?text=Dança+da+Vida'">
+                                <div class="absolute inset-0 bg-black bg-opacity-0 group-hover:bg-opacity-70 transition-all duration-300 flex items-center justify-center text-center p-1">
+                                    <span class="text-white text-xs font-bold opacity-0 group-hover:opacity-100 transform translate-y-2 group-hover:translate-y-0 transition-all duration-300">A Dança da Vida</span>
+                                </div>
+                            </div>
+
+                            <div class="group relative overflow-hidden rounded-lg">
+                                <img src="./Madonna.jpg" 
+                                     alt="Madonna" 
+                                     class="w-full h-32 object-cover transition-transform duration-300 group-hover:scale-110"
+                                     onerror="this.src='https://placehold.co/400x300?text=Madonna'">
+                                <div class="absolute inset-0 bg-black bg-opacity-0 group-hover:bg-opacity-70 transition-all duration-300 flex items-center justify-center">
+                                    <span class="text-white text-xs font-bold opacity-0 group-hover:opacity-100 transform translate-y-2 group-hover:translate-y-0 transition-all duration-300">Madonna</span>
+                                </div>
+                            </div>
+
+                            <div class="group relative overflow-hidden rounded-lg">
+                                <img src="./Crianca doente.jpg" 
+                                     alt="A Criança Doente" 
+                                     class="w-full h-32 object-cover transition-transform duration-300 group-hover:scale-110"
+                                     onerror="this.src='https://placehold.co/400x300?text=Criança+Doente'">
+                                <div class="absolute inset-0 bg-black bg-opacity-0 group-hover:bg-opacity-70 transition-all duration-300 flex items-center justify-center text-center p-1">
+                                    <span class="text-white text-xs font-bold opacity-0 group-hover:opacity-100 transform translate-y-2 group-hover:translate-y-0 transition-all duration-300">A Criança Doente</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <h4 class="text-xl text-white mb-3 border-l-4 border-orange-500 pl-3">Características</h4>
+                        <p class="text-sm text-gray-300">
+                            Uso de cores fortes, figuras deformadas e linhas simples. Prioridade à representação de emoções em detrimento do realismo visual.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <footer class="bg-neutral-900 text-center py-6 border-t border-neutral-800">
+        <p class="text-gray-600 text-sm">&copy; Resumo de História da Arte</p>
+    </footer>
+
+    <!-- JS for Gemini Integration -->
+    <script>
+        // ATENÇÃO: nunca coloque a sua chave real num ficheiro público.
+        // Para testar localmente, substitua abaixo por uma variável de ambiente
+        // injetada pelo seu bundler/servidor, ou edite manualmente APENAS em uso local.
+        const apiKey = "AIzaSyCHes_7Vn7VQtNNEWTm8kj8k8MiQ8UG80U"; // <-- coloque aqui a sua chave APENAS para testes locais
+        // Endpoint oficial do AI Studio para o modelo gemini-3-flash-preview (REST)
+        const API_URL = "https://generativelanguage.googleapis.com/v1beta/models/gemini-3-flash-preview:generateContent";
+
+        async function callGemini(prompt, systemInstruction = "") {
+            const payload = {
+                contents: [
+                    {
+                        parts: [
+                            {
+                                text: prompt
+                            }
+                        ]
+                    }
+                ]
+            };
+
+            // DEBUG LOGS
+            console.log("=== GEMINI DEBUG ===");
+            console.log("API_URL:", API_URL);
+            console.log("Payload:", JSON.stringify(payload, null, 2));
+
+            try {
+                const response = await fetch(API_URL, {
+                    method: 'POST',
+                    headers: { 
+                        'Content-Type': 'application/json',
+                        'x-goog-api-key': apiKey
+                    },
+                    body: JSON.stringify(payload)
+                });
+
+                const data = await response.json();
+                if (data.error) throw new Error(data.error.message);
+                return data.candidates[0].content.parts[0].text;
+
+            } catch (error) {
+                console.error("Erro na API:", error);
+                return "Desculpe, a inspiração falhou momentaneamente. Tente novamente. (Erro de API)";
+            }
+        }
+
+        // --- Feature: Emotion to Art ---
+
+        async function generateArtDescription() {
+            const emotionInput = document.getElementById('emotion-input');
+            const emotion = emotionInput.value.trim();
+            const resultDiv = document.getElementById('art-result');
+            
+            if (!emotion) {
+                resultDiv.innerHTML = '<span class="text-orange-400 font-bold">Por favor, escreva uma emoção para começar.</span>';
+                return;
+            }
+
+            resultDiv.innerHTML = '<div class="flex flex-col items-center justify-center h-full gap-2"><div class="loader"></div><span class="text-xs text-gray-400">Pintando com palavras...</span></div>';
+
+            // More focused prompt for a single feature
+            const prompt = `Descreva uma pintura expressionista imaginária que represente o sentimento: "${emotion}". Descreva as cores (fortes, contrastantes), as formas (distorcidas, angulares) e a atmosfera. Seja poético e visual. Máximo 60 palavras.`;
+            
+            const description = await callGemini(prompt, "Você é um poeta expressionista visual.");
+            
+            // Format output nicely
+            resultDiv.innerHTML = `
+                <div class="h-full overflow-y-auto text-center">
+                    <h4 class="text-orange-400 font-bold text-lg mb-2 uppercase tracking-wider border-b border-orange-500/20 inline-block px-4 pb-1">${emotion}</h4>
+                    <p class="text-gray-300 text-md italic leading-relaxed mt-2">"${description}"</p>
+                </div>
+            `;
+            
+            // Clear input for next try? Optional, but keeping text allows user to modify it.
+        }
+        
+        // Enable Enter key for the input
+        document.getElementById('emotion-input').addEventListener('keypress', (e) => {
+            if (e.key === 'Enter') generateArtDescription();
+        });
+
+    </script>
+
+</body>
+</html>
